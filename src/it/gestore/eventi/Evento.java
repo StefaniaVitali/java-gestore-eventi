@@ -33,8 +33,8 @@ public class Evento {
 		return data;
 	}
 
-	public void setData(LocalDate data) {
-		this.data = data; 
+	public void setData(int anno, int mese, int giorno) {
+		this.data = LocalDate.of(anno, mese, giorno); 
 	}
 
 	public int getNumPostiTot() {
@@ -47,7 +47,18 @@ public class Evento {
 	
 	
 	
-	//METODI PUBLIC : PRENOTA, DISDICI + TOSTRING (override)
+	//METODI PUBLIC : PRENOTA, DISDICI + to.STRING (override)
+	//PRENOTA
+	//DISDICI
+	//METODO TOSTRING
+	
+	@Override
+	public String toString() {
+		return "Hai prenotato per il giorno " 
+	             + this.data.getDayOfMonth() + "-" + this.data.getMonthValue() + "-"  + this.data.getYear()
+	             + " " + this.getTitolo();
+	}
+	
 	
 	//METODI EVENTUALI PUBLIC E PRIVATE PER FARE FUNZIONARE TUTTO
 	
