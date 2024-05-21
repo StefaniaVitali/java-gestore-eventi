@@ -7,8 +7,10 @@ public class Evento {
 	//PROPRIETA': titolo, data, n' posti totali, n'posti prenotati
 	private String titolo;
 	private LocalDate data;
-	int numPostiTot;
-	int numPostiPreno;	
+	private int numPostiTot;
+	private int numPostiPreno;	
+	
+//	private LocalDate localdate1 = LocalDate.now();
 	
 	//COSTRUTTORE
 	public Evento(String titolo, LocalDate data, int postiTot) {
@@ -46,12 +48,45 @@ public class Evento {
 	}
 	
 	
-	
 	//METODI PUBLIC : PRENOTA, DISDICI + to.STRING (override)
 	//PRENOTA
+	public int prenotaEvento(int postiPrenotati , LocalDate data ) {
+		
+		LocalDate oggi = LocalDate.now();			
+		postiPrenotati = this.numPostiPreno;
+		int  postiLiberi = this.numPostiTot - postiPrenotati;
+		
+		if(!oggi.isBefore(data)) {
+			System.out.println("La data che hai scelto non è corretta");
+		} else if (postiLiberi == 0) {
+		    System.out.println("non ci sono più posti disponibili");
+		} else			
+		   postiPrenotati = postiPrenotati + 1;
+		   postiLiberi = this.numPostiTot - postiPrenotati;
+		  this.numPostiPreno = postiPrenotati;
+		  return postiPrenotati;
+	}
 	//DISDICI
-	//METODO TOSTRING
 	
+	public int disdiciEvento(int postiPrenotati , LocalDate data ) {
+		
+		LocalDate oggi = LocalDate.now();			
+		postiPrenotati = this.numPostiPreno;
+		int  postiLiberi = this.numPostiTot - postiPrenotati;
+		
+		if(!oggi.isBefore(data)) {
+			System.out.println("Non è più possibile disdire la prenotazione");
+		} else if (postiLiberi == this.numPostiTot || postiPrenotati == 0) {
+		    System.out.println("non è possibile disdire");
+		} else			
+		   postiPrenotati = postiPrenotati - 1;
+		   postiLiberi = this.numPostiTot + postiPrenotati;
+		  this.numPostiPreno = postiPrenotati;
+		  return postiPrenotati;
+	}
+
+	
+	//METODO TOSTRING
 	@Override
 	public String toString() {
 		return "Hai prenotato per il giorno " 
