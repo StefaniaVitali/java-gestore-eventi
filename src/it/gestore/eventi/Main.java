@@ -1,6 +1,7 @@
 package it.gestore.eventi;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
@@ -99,7 +100,7 @@ public class Main {
 				filmfestival.numeroPrenotazioni(numPreno3);
 				filmfestival.postiLiberi();
 				input.nextLine();
-				System.out.println( "hai prenotato: " + filmfestival.getNumPostiPreno() +"posti e  restano ancora: "+ filmfestival.postiLiberi());		    	
+				System.out.println( "hai prenotato: " + filmfestival.getNumPostiPreno() +" posti e  restano ancora: "+ filmfestival.postiLiberi());		    	
 				break;
 			case "4": 
 				System.out.println("Quanti posti vuoi prenotare?");
@@ -108,7 +109,7 @@ public class Main {
 				mostraArteContemporanea.numeroPrenotazioni(numPreno4);
 				mostraArteContemporanea.postiLiberi();
 				input.nextLine();
-				System.out.println( "hai prenotato: " + mostraArteContemporanea.getNumPostiPreno() +"posti e  restano ancora: "+ mostraArteContemporanea.postiLiberi());		    	
+				System.out.println( "hai prenotato: " + mostraArteContemporanea.getNumPostiPreno() +" posti e  restano ancora: "+ mostraArteContemporanea.postiLiberi());		    	
 				break;
 			default:  System.out.println("La scelta effettuata non è corretta!"); 
 			}
@@ -155,7 +156,7 @@ public class Main {
 				System.out.println("Quanti posti vuoi disdire?");
 				int numDis3 = input.nextInt();		       	 
 				System.out.println(numDis3);
-				filmfestival.numeroPrenotazioni(numDis3);
+				filmfestival.numeroDisdette(numDis3);
 				filmfestival.postiLiberi();
 				input.nextLine();
 				System.out.println( "hai prenotato: " + numDis3 +" posti e restano ancora: "+ filmfestival.postiLiberi());		    	
@@ -164,7 +165,7 @@ public class Main {
 				System.out.println("Quanti posti vuoi disdire?");
 				int numDis4 = input.nextInt();		       	 
 				System.out.println(numDis4);
-				mostraArteContemporanea.numeroPrenotazioni(numDis4);
+				mostraArteContemporanea.numeroDisdette(numDis4);
 				mostraArteContemporanea.postiLiberi();
 				input.nextLine();
 				System.out.println( "hai prenotato: " + numDis4 +" posti e  restano ancora: "+ mostraArteContemporanea.postiLiberi());		    	
@@ -173,7 +174,15 @@ public class Main {
 			}
 
 		} else 
-			System.out.println("non è possibile procedere con la prenotazione");
+			System.out.println("non è possibile procedere con la disdetta");
+		
+		//CREARE EVENTO CONCERTO
+		LocalDate dataEvento5 = LocalDate.of(2025, 7, 13);
+		LocalTime orario = LocalTime.of(20, 30);
+		Concerto FirenzeRockFestival = new Concerto("FirenzeRockFestival", dataEvento5, 3000, orario, 75.554f);
+		
+		//toString();
+		System.out.println(FirenzeRockFestival.toString());
 
 		//chiusura scanner
 		input.close(); 
