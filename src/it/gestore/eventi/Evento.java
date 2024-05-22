@@ -17,10 +17,12 @@ public class Evento {
 		this.titolo = titolo;
 		if(!this.isCorretta(data)) {
 			this.data = data;	
-		} else System.out.println("non è possibile creare correttamente l'evento: la data è passata");
+		   } else System.out.println("non è possibile creare correttamente l'evento: la data è passata, \n "
+		   		                     + "la data inserita di default sarà quella di oggi ");
+		   this.data = LocalDate.now();//inizializzare una data tipo oggi di default
 		if(!this.isPositivo(this.numPostiTot)) {
 			this.numPostiTot = postiTot;	
-		} else System.out.println("non è possibile creare correttamente l'evento: il numero inserito è negativo");
+		   } else System.out.println("non è possibile creare correttamente l'evento: il numero inserito è negativo");
 		numPostiPreno = 0;
 		
 	}
@@ -96,9 +98,9 @@ public class Evento {
 	//METODO TOSTRING
 	@Override
 	public String toString() {
-		return "Hai prenotato per il giorno " 
+		return "Hai creato un evento per il giorno " 
 	             + this.data.getDayOfMonth() + "-" + this.data.getMonthValue() + "-"  + this.data.getYear()
-	             + " " + this.getTitolo();
+	             + " - " + this.getTitolo();
 	}
 	
 	
