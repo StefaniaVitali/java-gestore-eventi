@@ -15,11 +15,7 @@ public class Evento {
 	//COSTRUTTORE
 	public Evento(String titolo, LocalDate data, int postiTot) {
 		this.titolo = titolo;
-		if(!this.isCorretta(data)) {
-			this.data = data;	
-		} else System.out.println("non è possibile creare correttamente l'evento: la data è passata, \n "
-				+ "la data inserita di default sarà quella di oggi ");
-		        this.data = LocalDate.now();//inizializzare una data tipo oggi di default
+		this.data = data;	
 		if(!this.isPositivo(this.numPostiTot)) {
 			this.numPostiTot = postiTot;	
 		} else System.out.println("non è possibile creare correttamente l'evento: il numero inserito è negativo");
@@ -119,9 +115,9 @@ public class Evento {
 
 		LocalDate oggi = LocalDate.now();
 		if (oggi.isBefore(data)) {
-			return false;
+			return true;
 		}		
-		return true;
+		return false;
 
 	}
 

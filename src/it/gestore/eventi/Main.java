@@ -2,7 +2,6 @@ package it.gestore.eventi;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -29,15 +28,13 @@ public class Main {
 		int meseEvento = input.nextInt();
 		System.out.println("Scegli l'anno");
 		int annoEvento = input.nextInt();
-		//devo chiudere o non funziona il prossimo input per le stringhe
-
 
 		LocalDate dataEvento1 = LocalDate.of(annoEvento, meseEvento, giornoEvento);
 
 		//CREAZIONE posti in totali
 		System.out.println("Quanti sono i posti totali?");
 		int numeroPostiTotali = input.nextInt();
-		input.nextLine();
+		input.nextLine(); //=>devo mettere un input vuoto o non funziona il prossimo input.nextLine per le stringhe
 
 		//ISTANZIARE  IL NUOVO EVENTO
 		Evento evento1 = new Evento(nomeEvento1, dataEvento1, numeroPostiTotali);
@@ -176,27 +173,27 @@ public class Main {
 
 		} else 
 			System.out.println("Nessuna disdetta effettuata ");
-		
+
 		//CREARE EVENTO CONCERTO
 		LocalDate dataEvento5 = LocalDate.of(2025, 7, 13);
 		LocalTime orario = LocalTime.of(20, 30);
 		Concerto FirenzeRockFestival = new Concerto("FirenzeRockFestival", dataEvento5, 3000, orario, 75.554f);
-		
+
 		//toString();
 		System.out.println(FirenzeRockFestival.toString());
-		
-		
+
+
 		/*
 		 * ARRAYLIST PROGRAMMAEVENTI
 		 */
-		
+
 		//INIZIALIZZARE UN NUOVO PROGRAMMA EVENTI
 		//Creazione di nuovi eventi:
 		Evento nutellaParty = new Evento("NutellaParty", dataEvento4, 60);
 		Evento spaghettataDiMezzanotte = new Evento("Spaghettata di Mezzanotte", dataEvento4, 20);
 		Evento radunoMotociclisti = new Evento("Raduno Motociclisti", dataEvento2, 500);		
 		ProgrammaEventi calendario2425= new ProgrammaEventi("Calendario2425"); 
-		
+
 		//TEST METODO ADDEVENTO
 		calendario2425.addEvento(evento1);
 		calendario2425.addEvento(comicon);
@@ -204,20 +201,24 @@ public class Main {
 		calendario2425.addEvento(mostraArteContemporanea);
 		calendario2425.addEvento(FirenzeRockFestival);
 		calendario2425.addEvento(nutellaParty);
-	    calendario2425.addEvento(spaghettataDiMezzanotte);
-	    calendario2425.addEvento(radunoMotociclisti);
-	    
-	//    System.out.println(calendario2425.toString());
-	    
-	  //TEST METODO 
-	  //TEST METODO NUMEROEVENTI
-	    System.out.println("Il numero di eventi presenti nel programma "+ calendario2425.getTitolo() +" è di " + calendario2425.numeroEventi() + " eventi");
-	    
-	  //TEST METODO
-	  //TEST METODO
-	    
-		
-		
+		calendario2425.addEvento(spaghettataDiMezzanotte);
+		calendario2425.addEvento(radunoMotociclisti);
+
+		//    System.out.println(calendario2425.toString());
+
+		//TEST METODO 
+		//TEST METODO NUMEROEVENTI
+		System.out.println("Il numero di eventi presenti nel programma "+ calendario2425.getTitolo() +" è di " + calendario2425.numeroEventi() + " eventi");
+
+		//TEST METODO EVENTIPERDATA (data scelta 20/02/2025)
+		calendario2425.eventiPerData(dataEvento4);
+
+		//TEST METODO SVUOTALISTA
+		calendario2425.svuotaLista();
+		System.out.println("Il numero di eventi presenti nel programma "+ calendario2425.getTitolo() +" è di " + calendario2425.numeroEventi() + " eventi");
+
+
+
 
 		//chiusura scanner
 		input.close(); 
