@@ -2,6 +2,7 @@ package it.gestore.eventi;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -63,7 +64,7 @@ public class Main {
 
 		String scelta = input.nextLine();
 
-		if (scelta.equals("si")) {
+		if (scelta.equalsIgnoreCase("si")) {
 
 			System.out.println("Per quale evento vuoi effettuare la prenotazione? ");
 			System.out.println(" Scegli 1 per " + evento1.getTitolo() + " in data " + dataEvento1.getDayOfMonth() + " " + dataEvento1.getMonth() + " "+ dataEvento1.getYear());
@@ -122,7 +123,7 @@ public class Main {
 		System.out.println(nomeUtente + " Vuoi disdire una prenotazione per un evento?\n Scegli si o no");  
 		String scelta2 = input.nextLine();
 
-		if (scelta2.equals("si")) {
+		if (scelta2.equalsIgnoreCase("si")) {
 
 			System.out.println("Per quale evento vuoi effettuare la disdetta? ");
 			System.out.println(" Scegli 1 per " + evento1.getTitolo() + " in data " + dataEvento1.getDayOfMonth() + " " + dataEvento1.getMonth() + " "+ dataEvento1.getYear());
@@ -150,7 +151,7 @@ public class Main {
 				comicon.numeroDisdette(numDis2);
 				comicon.postiLiberi();
 				input.nextLine();
-				System.out.println( "hai prenotato: " + numDis2 +" posti e  restano ancora: "+ comicon.postiLiberi());		    	
+				System.out.println( "hai disdetto: " + numDis2 +" posti e  restano ancora: "+ comicon.postiLiberi());		    	
 				break;
 			case "3": 
 				System.out.println("Quanti posti vuoi disdire?");
@@ -159,7 +160,7 @@ public class Main {
 				filmfestival.numeroDisdette(numDis3);
 				filmfestival.postiLiberi();
 				input.nextLine();
-				System.out.println( "hai prenotato: " + numDis3 +" posti e restano ancora: "+ filmfestival.postiLiberi());		    	
+				System.out.println( "hai disdetto: " + numDis3 +" posti e restano ancora: "+ filmfestival.postiLiberi());		    	
 				break;
 			case "4": 
 				System.out.println("Quanti posti vuoi disdire?");
@@ -168,13 +169,13 @@ public class Main {
 				mostraArteContemporanea.numeroDisdette(numDis4);
 				mostraArteContemporanea.postiLiberi();
 				input.nextLine();
-				System.out.println( "hai prenotato: " + numDis4 +" posti e  restano ancora: "+ mostraArteContemporanea.postiLiberi());		    	
+				System.out.println( "hai disdetto: " + numDis4 +" posti e  restano ancora: "+ mostraArteContemporanea.postiLiberi());		    	
 				break;
 			default:  System.out.println("La scelta effettuata non è corretta!"); 
 			}
 
 		} else 
-			System.out.println("non è possibile procedere con la disdetta");
+			System.out.println("Nessuna disdetta effettuata ");
 		
 		//CREARE EVENTO CONCERTO
 		LocalDate dataEvento5 = LocalDate.of(2025, 7, 13);
@@ -183,6 +184,40 @@ public class Main {
 		
 		//toString();
 		System.out.println(FirenzeRockFestival.toString());
+		
+		
+		/*
+		 * ARRAYLIST PROGRAMMAEVENTI
+		 */
+		
+		//INIZIALIZZARE UN NUOVO PROGRAMMA EVENTI
+		//Creazione di nuovi eventi:
+		Evento nutellaParty = new Evento("NutellaParty", dataEvento4, 60);
+		Evento spaghettataDiMezzanotte = new Evento("Spaghettata di Mezzanotte", dataEvento4, 20);
+		Evento radunoMotociclisti = new Evento("Raduno Motociclisti", dataEvento2, 500);		
+		ProgrammaEventi calendario2425= new ProgrammaEventi("Calendario2425"); 
+		
+		//TEST METODO ADDEVENTO
+		calendario2425.addEvento(evento1);
+		calendario2425.addEvento(comicon);
+		calendario2425.addEvento(filmfestival);
+		calendario2425.addEvento(mostraArteContemporanea);
+		calendario2425.addEvento(FirenzeRockFestival);
+		calendario2425.addEvento(nutellaParty);
+	    calendario2425.addEvento(spaghettataDiMezzanotte);
+	    calendario2425.addEvento(radunoMotociclisti);
+	    
+	//    System.out.println(calendario2425.toString());
+	    
+	  //TEST METODO 
+	  //TEST METODO NUMEROEVENTI
+	    System.out.println("Il numero di eventi presenti nel programma "+ calendario2425.getTitolo() +" è di " + calendario2425.numeroEventi() + " eventi");
+	    
+	  //TEST METODO
+	  //TEST METODO
+	    
+		
+		
 
 		//chiusura scanner
 		input.close(); 

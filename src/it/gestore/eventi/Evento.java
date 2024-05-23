@@ -19,7 +19,7 @@ public class Evento {
 			this.data = data;	
 		} else System.out.println("non è possibile creare correttamente l'evento: la data è passata, \n "
 				+ "la data inserita di default sarà quella di oggi ");
-		this.data = LocalDate.now();//inizializzare una data tipo oggi di default
+		        this.data = LocalDate.now();//inizializzare una data tipo oggi di default
 		if(!this.isPositivo(this.numPostiTot)) {
 			this.numPostiTot = postiTot;	
 		} else System.out.println("non è possibile creare correttamente l'evento: il numero inserito è negativo");
