@@ -2,6 +2,9 @@ package it.gestore.eventi;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class ProgrammaEventi {
 
@@ -74,5 +77,8 @@ public class ProgrammaEventi {
 	}
 
 	//METODO CHE RESTITUISCE  UNA STRINGA CHE MOSTRA EVENTI ORDINATI PER DATA - TITOLO
+	
+	
+
 
 }

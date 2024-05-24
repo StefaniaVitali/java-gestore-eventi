@@ -61,7 +61,7 @@ public class Evento {
 		postiPrenotati = this.numPostiPreno;
 		int  postiLiberi = this.numPostiTot - postiPrenotati;
 
-		if(oggi.isBefore(data)) {
+		if(data.isBefore(oggi)) {
 			System.out.println("La data che hai scelto non è corretta");
 		} else if (postiLiberi == 0) {
 			System.out.println("non ci sono più posti disponibili");
@@ -79,9 +79,9 @@ public class Evento {
 		postiPrenotati = this.numPostiPreno;
 		int  postiLiberi = this.numPostiTot - postiPrenotati;
 
-		if(oggi.isBefore(data)) {
+		if(data.isBefore(oggi)) {
 			System.out.println("Non è più possibile disdire la prenotazione");
-		} else if (postiLiberi == this.numPostiTot || postiPrenotati == 0) {
+		} else if (postiLiberi == 0) {  
 			System.out.println("non è possibile disdire");
 		} else			
 			postiPrenotati = postiPrenotati - 1;
@@ -114,20 +114,22 @@ public class Evento {
 	public boolean isCorretta (LocalDate data) {
 
 		LocalDate oggi = LocalDate.now();
-		if (oggi.isBefore(data)) {
+		if (data.isBefore(oggi)) {
 			return true;
 		}		
 		return false;
 
 	}
+	
+	
 
-	public void numeroPrenotazioni(int num) {
+	public void numeroPrenotazioni(int num) {  //=> considerare che un utente prenota + posti di quelli liberi disponibili
 		for (int i = 0; i < num; i++) {
 			this.prenotaEvento(this.getNumPostiPreno(), this.getData());
 		}
 	} 
 
-	public void numeroDisdette(int num) {
+	public void numeroDisdette(int num) {  //=> considerare che un utente disdice e il numero va sotto lo zero
 		for (int i = 0; i < num; i++) {
 			this.disdiciEvento(this.getNumPostiPreno(), this.getData());
 		}
@@ -137,6 +139,9 @@ public class Evento {
 		int postiRimanenti = this.getNumPostiTot() - this.getNumPostiPreno();
 		return postiRimanenti;
 	}
+	
+	
+	//creare metodo per rendere stringa la data di modo da non farlo 80 volte!
 
 
 	//fine classe

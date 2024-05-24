@@ -206,12 +206,15 @@ public class Main {
 
 		//    System.out.println(calendario2425.toString());
 
-		//TEST METODO 
+		
 		//TEST METODO NUMEROEVENTI
 		System.out.println("Il numero di eventi presenti nel programma "+ calendario2425.getTitolo() +" è di " + calendario2425.numeroEventi() + " eventi");
 
 		//TEST METODO EVENTIPERDATA (data scelta 20/02/2025)
 		calendario2425.eventiPerData(dataEvento4);
+		
+		//TEST METODO EVENTIORDINATI PER DATA
+		calendario2425.eventiOrdinatiPerData();
 
 		//TEST METODO SVUOTALISTA
 		calendario2425.svuotaLista();

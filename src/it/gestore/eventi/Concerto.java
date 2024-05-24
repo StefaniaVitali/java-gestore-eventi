@@ -37,7 +37,9 @@ public class Concerto extends Evento {
 	//METODO TOSTRING
 	@Override
 	public String toString() {
-		return super.toString() + " orario: " + this.getOra() + " prezzo: " + String.format("%.2f", this.getPrezzo()) + "€";
+		
+		char euro = '\u20AC';
+		return super.toString() + " orario: " + this.getOra() + " prezzo: " + String.format("%.2f", this.getPrezzo()) + euro;
 
 	}
 
