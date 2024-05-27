@@ -2,14 +2,14 @@ package it.gestore.eventi;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
+//import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 public class ProgrammaEventi {
 
 	private String titolo;
-	private ArrayList <Evento> eventi;
+	private List <Evento> eventi;
 
 
 	//COSTRUTTORE
@@ -28,13 +28,15 @@ public class ProgrammaEventi {
 		this.titolo = titolo;
 	}
 
-	public ArrayList<Evento> getEventi() {
+	public List<Evento> getEventi() {
 		return eventi;
 	}
 
-	public void setEventi(ArrayList<Evento> eventi) {
+
+	public void setEventi(List<Evento> eventi) {
 		this.eventi = eventi;
 	}
+
 
 
 	/*
@@ -77,6 +79,13 @@ public class ProgrammaEventi {
 	}
 
 	//METODO CHE RESTITUISCE  UNA STRINGA CHE MOSTRA EVENTI ORDINATI PER DATA - TITOLO
+	public void mostraListaPerData () {
+		Collections.sort(eventi);
+		System.out.println(eventi);
+		
+	}
+
+
 	
 	
 

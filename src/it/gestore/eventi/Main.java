@@ -214,7 +214,7 @@ public class Main {
 		calendario2425.eventiPerData(dataEvento4);
 		
 		//TEST METODO EVENTIORDINATI PER DATA
-		calendario2425.eventiOrdinatiPerData();
+		calendario2425.mostraListaPerData();
 
 		//TEST METODO SVUOTALISTA
 		calendario2425.svuotaLista();

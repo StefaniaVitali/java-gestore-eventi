@@ -2,7 +2,7 @@ package it.gestore.eventi;
 
 import java.time.LocalDate;
 
-public class Evento {
+public class Evento  implements Comparable<Evento>{
 
 	//PROPRIETA': titolo, data, n' posti totali, n'posti prenotati
 	private String titolo;
@@ -81,7 +81,7 @@ public class Evento {
 
 		if(data.isBefore(oggi)) {
 			System.out.println("Non è più possibile disdire la prenotazione");
-		} else if (postiLiberi == 0) {  
+		} else if (postiLiberi == numPostiTot) {   //controllare bene
 			System.out.println("non è possibile disdire");
 		} else			
 			postiPrenotati = postiPrenotati - 1;
@@ -98,6 +98,12 @@ public class Evento {
 				+ this.data.getDayOfMonth() + "-" + this.data.getMonthValue() + "-"  + this.data.getYear()
 				+ " - " + this.getTitolo();
 	}
+	
+	//IMPLEMENTARE IL METODO DELL'INTERFACCIA COMPARABLE
+		@Override
+		public int compareTo(Evento o) {
+			return this.data.compareTo(o.data);
+		}
 
 
 	//METODI EVENTUALI	
@@ -129,7 +135,7 @@ public class Evento {
 		}
 	} 
 
-	public void numeroDisdette(int num) {  //=> considerare che un utente disdice e il numero va sotto lo zero
+	public void numeroDisdette(int num) {  //=> considerare che un utente disdice e il numero va sotto lo zero e vedere le scritte mettere in if e break
 		for (int i = 0; i < num; i++) {
 			this.disdiciEvento(this.getNumPostiPreno(), this.getData());
 		}
@@ -140,9 +146,9 @@ public class Evento {
 		return postiRimanenti;
 	}
 	
-	
 	//creare metodo per rendere stringa la data di modo da non farlo 80 volte!
 
+	
 
 	//fine classe
 }
