@@ -14,7 +14,7 @@ public class Main {
 		System.out.println("GESTORE DI EVENTI");
 		System.out.println("Inserisci il tuo nome");
 		String nomeUtente = input.nextLine();
-		System.out.println("Ciao " + nomeUtente + " crea il tuo primo evento!");
+		System.out.println("Ciao " + nomeUtente + "! Crea il tuo primo evento!");
 
 
 		//CREAZIONE EVENTO NUOVO evento chiedere il nome
@@ -41,8 +41,7 @@ public class Main {
 		Evento evento1 = new Evento(nomeEvento1, dataEvento1, numeroPostiTotali);
 
 		//PROVA METODO toString
-		System.out.println(evento1.toString());
-
+		System.out.println(evento1.toString() + " num posti totali "+ evento1.getNumPostiTot());	
 
 		//EVENTI CREATI IN PRECEDENZA:
 		//EVENTO: COMICON
@@ -57,7 +56,7 @@ public class Main {
 
 
 		//SCEGLIERE UN EVENTO ED EFFETTUARE UNA PRENOTAZIONE
-		System.out.println(nomeUtente +" ,cosa vuoi fare adesso?");
+		System.out.println(nomeUtente +", cosa vuoi fare adesso?");
 		System.out.println("Vuoi prenotare un evento?\n Scegli si o no");  
 
 		String scelta = input.nextLine();
@@ -70,45 +69,38 @@ public class Main {
 			System.out.println(" Scegli 3 per " + filmfestival.getTitolo() + " in data " + filmfestival.dataFormattata());
 			System.out.println(" Scegli 4 per " + mostraArteContemporanea.getTitolo() + " in data " + mostraArteContemporanea.dataFormattata());
 
-			String sceltaPreno = input.nextLine();			
+			String sceltaPreno = input.nextLine();	
 
+			//la stampa dei posti prenotati e quelli disponibili è nel metodo numeroPrenotazioni
 			switch (sceltaPreno) {
 			case "1": 
 				System.out.println("Quanti posti vuoi prenotare?");
 				int numPreno = input.nextInt();		       	 
-				System.out.println(numPreno);
 				evento1.numeroPrenotazioni(numPreno);
 				evento1.postiLiberi();
-				input.nextLine();
-				System.out.println( "hai prenotato: " + evento1.getNumPostiPreno() +" posti e restano ancora: "+ evento1.postiLiberi());		    	
+				input.nextLine();		    	
 				break;
 
 			case "2": 
 				System.out.println("Quanti posti vuoi prenotare?");
 				int numPreno2 = input.nextInt();		       	 
-				System.out.println(numPreno2);
 				comicon.numeroPrenotazioni(numPreno2);
 				comicon.postiLiberi();
-				input.nextLine();
-				System.out.println( "hai prenotato: " + comicon.getNumPostiPreno() +" posti e restano ancora: "+ comicon.postiLiberi());		    	
+				input.nextLine();		    	
 				break;
 			case "3": 
 				System.out.println("Quanti posti vuoi prenotare?");
 				int numPreno3 = input.nextInt();		       	 
-				System.out.println(numPreno3);
 				filmfestival.numeroPrenotazioni(numPreno3);
 				filmfestival.postiLiberi();
-				input.nextLine();
-				System.out.println( "hai prenotato: " + filmfestival.getNumPostiPreno() +" posti e  restano ancora: "+ filmfestival.postiLiberi());		    	
+				input.nextLine();	    	
 				break;
 			case "4": 
 				System.out.println("Quanti posti vuoi prenotare?");
 				int numPreno4 = input.nextInt();		       	 
-				System.out.println(numPreno4);
 				mostraArteContemporanea.numeroPrenotazioni(numPreno4);
 				mostraArteContemporanea.postiLiberi();
 				input.nextLine();
-				System.out.println( "hai prenotato: " + mostraArteContemporanea.getNumPostiPreno() +" posti e  restano ancora: "+ mostraArteContemporanea.postiLiberi());		    	
 				break;
 			default:  System.out.println("La scelta effettuata non è corretta!"); 
 			}
@@ -131,43 +123,36 @@ public class Main {
 
 			String sceltaDisdetta = input.nextLine();			
 
+			//la stampa dei posti disdetti e quelli disponibili è nel metodo numeroDisdette
 			switch (sceltaDisdetta) {
 			case "1": 
 				System.out.println("Quanti posti vuoi disdire?");
 				int numDis = input.nextInt();		       	 
-				System.out.println(numDis);
 				evento1.numeroDisdette(numDis);
 				evento1.postiLiberi();
-				input.nextLine();
-				System.out.println( "hai disdetto: " + numDis +" posti e  restano ancora: "+ evento1.postiLiberi());		    	
+				input.nextLine();	    	
 				break;
 
 			case "2": 
 				System.out.println("Quanti posti vuoi disdire?");
 				int numDis2 = input.nextInt();		       	 
-				System.out.println(numDis2);
 				comicon.numeroDisdette(numDis2);
 				comicon.postiLiberi();
-				input.nextLine();
-				System.out.println( "hai disdetto: " + numDis2 +" posti e  restano ancora: "+ comicon.postiLiberi());		    	
+				input.nextLine();		    	
 				break;
 			case "3": 
 				System.out.println("Quanti posti vuoi disdire?");
 				int numDis3 = input.nextInt();		       	 
-				System.out.println(numDis3);
 				filmfestival.numeroDisdette(numDis3);
 				filmfestival.postiLiberi();
-				input.nextLine();
-				System.out.println( "hai disdetto: " + numDis3 +" posti e restano ancora: "+ filmfestival.postiLiberi());		    	
+				input.nextLine();	    	
 				break;
 			case "4": 
 				System.out.println("Quanti posti vuoi disdire?");
 				int numDis4 = input.nextInt();		       	 
-				System.out.println(numDis4);
 				mostraArteContemporanea.numeroDisdette(numDis4);
 				mostraArteContemporanea.postiLiberi();
 				input.nextLine();
-				System.out.println( "hai disdetto: " + numDis4 +" posti e  restano ancora: "+ mostraArteContemporanea.postiLiberi());		    	
 				break;
 			default:  System.out.println("La scelta effettuata non è corretta!"); 
 			}

@@ -15,11 +15,10 @@ public class Evento  implements Comparable<Evento>{
 
 	//COSTRUTTORE
 	public Evento(String titolo, LocalDate data, int postiTot) {
-		this.titolo = titolo;
-		this.data = data;	
-		if(!this.isPositivo(this.numPostiTot)) {
-			this.numPostiTot = postiTot;	
-		} else System.out.println("non è possibile creare correttamente l'evento: il numero inserito è negativo");
+
+		this.titolo = titolo;	
+		this.data = this.dataCorretta(data);  
+		this.numPostiTot = this.numeroPostPositivo(postiTot);		
 		numPostiPreno = 0;
 
 	}
@@ -107,22 +106,29 @@ public class Evento  implements Comparable<Evento>{
 
 	//METODI EVENTUALI	
 
-	//METODO NUMERO POSITIVO
-	public boolean isPositivo (int num) {	
+	public int numeroPostPositivo (int num) {	
 
-		if (num <= 0) {
-			return false;
-		} 		
-		return true;		
+		if (num > 0) {
+			return num;
+		} else if(num < 0) {
+			System.out.println("Il numero inserito è negativo!\nVerrà inserito il numero con valore positivo");
+			return -(num);
+		} System.out.println("Il numero inserito è pari a 0!\nVerrà inserito un numero di defaul di min 2 persone");
+		return 2;
+
 	}	
 
-	public boolean isCorretta (LocalDate data) {
+
+	public LocalDate dataCorretta (LocalDate data) {
 
 		LocalDate oggi = LocalDate.now();
-		if (data.isBefore(oggi)) {
-			return true;
-		}		
-		return false;
+		if (!data.isBefore(oggi)) {
+			return data;
+		}	else {
+			System.out.println("La data inserita non è corretta!\nVerrà inserita in automatico la data di domani");
+			return data = LocalDate.now().plusDays(1);
+		}
+
 
 	}
 
@@ -137,15 +143,35 @@ public class Evento  implements Comparable<Evento>{
 
 
 	public void numeroPrenotazioni(int num) {  //=> considerare che un utente prenota + posti di quelli liberi disponibili
-		for (int i = 0; i < num; i++) {
-			this.prenotaEvento(this.getNumPostiPreno(), this.getData());
-		}
+
+		System.out.println("\nAttendi un attimo...\nStiamo procedendo con la prenotazione...\n3...\n2...\n1...");
+		int a = this.postiLiberi();
+		if (num <= a) {
+			for (int i = 0; i < num; i++) {
+				this.prenotaEvento(this.getNumPostiPreno(), this.getData());
+			} 
+			System.out.println( "hai prenotato: " + num +" posti e restano ancora: "+ this.postiLiberi());	
+		} else if (num > a) {
+			System.out.println("Non è possibile procede con la prenotazione!\nI posti che vuole prenotare sono superiori ai posti liberi per l'evento");
+		} else 
+			System.out.println("Hai prenotato 0 posti.\nNon è possibile procedere con la prenotazione");	
+
+
 	} 
 
-	public void numeroDisdette(int num) {  //=> considerare che un utente disdice e il numero va sotto lo zero e vedere le scritte mettere in if e break
-		for (int i = 0; i < num; i++) {
-			this.disdiciEvento(this.getNumPostiPreno(), this.getData());
-		}
+	public void numeroDisdette(int num) {  
+
+		System.out.println("\nAttendi un attimo...\nStiamo procedendo con la disdetta...\n3...\n2...\n1...");
+		if (num <= this.numPostiPreno) {
+			for (int i = 0; i < num; i++) {
+				this.disdiciEvento(this.getNumPostiPreno(), this.getData());
+			}  
+			System.out.println( "hai disdetto: " + num +" posti e restano ancora: "+ this.postiLiberi());	
+		} else if (num <= 0) { //minore zero
+			System.out.println("Non è possibile procede con la disdetta!");
+		} else 
+			System.out.println("Non è possibile procede con la disdetta!");	
+
 	} 
 
 	public int postiLiberi() {
