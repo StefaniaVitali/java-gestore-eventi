@@ -1,6 +1,7 @@
 package it.gestore.eventi;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Evento  implements Comparable<Evento>{
 
@@ -93,17 +94,15 @@ public class Evento  implements Comparable<Evento>{
 
 	//METODO TOSTRING
 	@Override
-	public String toString() {
-		return "Hai creato un evento per il giorno " 
-				+ this.data.getDayOfMonth() + "-" + this.data.getMonthValue() + "-"  + this.data.getYear()
-				+ " - " + this.getTitolo();
+	public String toString() {			
+		return "Hai creato un evento per il giorno " + this.dataFormattata() + " - " + this.getTitolo();
 	}
-	
+
 	//IMPLEMENTARE IL METODO DELL'INTERFACCIA COMPARABLE
-		@Override
-		public int compareTo(Evento o) {
-			return this.data.compareTo(o.data);
-		}
+	@Override
+	public int compareTo(Evento o) {
+		return this.data.compareTo(o.data);
+	}
 
 
 	//METODI EVENTUALI	
@@ -126,8 +125,16 @@ public class Evento  implements Comparable<Evento>{
 		return false;
 
 	}
-	
-	
+
+	//creare metodo che restituisca una stringa formattata!
+	public String dataFormattata () {
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String dataFormattata = this.data.format(dateFormat);	
+		return dataFormattata;
+	}
+
+
+
 
 	public void numeroPrenotazioni(int num) {  //=> considerare che un utente prenota + posti di quelli liberi disponibili
 		for (int i = 0; i < num; i++) {
@@ -145,10 +152,7 @@ public class Evento  implements Comparable<Evento>{
 		int postiRimanenti = this.getNumPostiTot() - this.getNumPostiPreno();
 		return postiRimanenti;
 	}
-	
-	//creare metodo per rendere stringa la data di modo da non farlo 80 volte!
 
-	
 
 	//fine classe
 }

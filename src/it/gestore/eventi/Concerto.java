@@ -2,6 +2,7 @@ package it.gestore.eventi;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Concerto extends Evento {
 
@@ -37,9 +38,10 @@ public class Concerto extends Evento {
 	//METODO TOSTRING
 	@Override
 	public String toString() {
-		
+		DateTimeFormatter oraFormat = DateTimeFormatter.ofPattern("HH:ss");
+		String oraFormattata = this.ora.format(oraFormat);	
 		char euro = '\u20AC';
-		return super.toString() + " orario: " + this.getOra() + " prezzo: " + String.format("%.2f", this.getPrezzo()) + euro;
+		return super.toString() + " orario: " + oraFormattata + " prezzo: " + String.format("%.2f", this.getPrezzo()) + euro;
 
 	}
 

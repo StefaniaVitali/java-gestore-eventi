@@ -51,18 +51,18 @@ public class ProgrammaEventi {
 
 	//METODO PER RESTITUIRE UNA LISTA CON TUTTI GLI EVENTI IN UNA CERTA DATA
 	public void eventiPerData(LocalDate data) {
-		
+
 		boolean trovato = true;
-		
+
 		for(int i = 0; i < this.eventi.size(); i++) {			
 			String nomeEvento = this.eventi.get(i).getTitolo();
 			LocalDate data1 = this.eventi.get(i).getData();
 			if(data1.isEqual(data)) {
-			  trovato = true;
-			  System.out.println(nomeEvento);
+				trovato = true;
+				System.out.println(nomeEvento);
 			}          			
 		}	
-		
+
 		if(!trovato) {
 			System.out.println("Non abbiamo trovato nessun evento presente in questa data");			
 		}
@@ -81,13 +81,15 @@ public class ProgrammaEventi {
 	//METODO CHE RESTITUISCE  UNA STRINGA CHE MOSTRA EVENTI ORDINATI PER DATA - TITOLO
 	public void mostraListaPerData () {
 		Collections.sort(eventi);
-		System.out.println(eventi);
-		
+		for(int i = 0; i < eventi.size() ;i++) {
+			System.out.println(eventi.get(i).dataFormattata() +" - "+ eventi.get(i).getTitolo());
+		}
+
 	}
 
 
-	
-	
+
+
 
 
 }

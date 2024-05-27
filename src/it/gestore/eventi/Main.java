@@ -37,8 +37,8 @@ public class Main {
 		input.nextLine(); //=>devo mettere un input vuoto o non funziona il prossimo input.nextLine per le stringhe
 
 		//ISTANZIARE  IL NUOVO EVENTO
+		System.out.println("Attendi qualche secondo\nStiamo creando il tuo evento...\n3...\n2...\n1...");
 		Evento evento1 = new Evento(nomeEvento1, dataEvento1, numeroPostiTotali);
-		evento1.isCorretta(dataEvento1);
 
 		//PROVA METODO toString
 		System.out.println(evento1.toString());
@@ -57,17 +57,18 @@ public class Main {
 
 
 		//SCEGLIERE UN EVENTO ED EFFETTUARE UNA PRENOTAZIONE
-		System.out.println(nomeUtente + " Vuoi prenotare un evento?\n Scegli si o no");  
+		System.out.println(nomeUtente +" ,cosa vuoi fare adesso?");
+		System.out.println("Vuoi prenotare un evento?\n Scegli si o no");  
 
 		String scelta = input.nextLine();
 
 		if (scelta.equalsIgnoreCase("si")) {
 
 			System.out.println("Per quale evento vuoi effettuare la prenotazione? ");
-			System.out.println(" Scegli 1 per " + evento1.getTitolo() + " in data " + dataEvento1.getDayOfMonth() + " " + dataEvento1.getMonth() + " "+ dataEvento1.getYear());
-			System.out.println(" Scegli 2 per " + comicon.getTitolo() + " in data " + dataEvento2.getDayOfMonth() + " " + dataEvento2.getMonth() + " "+ dataEvento2.getYear());
-			System.out.println(" Scegli 3 per " + filmfestival.getTitolo() + " in data " + dataEvento3.getDayOfMonth() + " " + dataEvento3.getMonth() + " "+ dataEvento3.getYear());
-			System.out.println(" Scegli 4 per " + mostraArteContemporanea.getTitolo() + " in data " + dataEvento4.getDayOfMonth() + " " + dataEvento4.getMonth() + " "+ dataEvento4.getYear());
+			System.out.println(" Scegli 1 per " + evento1.getTitolo() + " in data " + evento1.dataFormattata());
+			System.out.println(" Scegli 2 per " + comicon.getTitolo() + " in data " + comicon.dataFormattata());
+			System.out.println(" Scegli 3 per " + filmfestival.getTitolo() + " in data " + filmfestival.dataFormattata());
+			System.out.println(" Scegli 4 per " + mostraArteContemporanea.getTitolo() + " in data " + mostraArteContemporanea.dataFormattata());
 
 			String sceltaPreno = input.nextLine();			
 
@@ -123,10 +124,10 @@ public class Main {
 		if (scelta2.equalsIgnoreCase("si")) {
 
 			System.out.println("Per quale evento vuoi effettuare la disdetta? ");
-			System.out.println(" Scegli 1 per " + evento1.getTitolo() + " in data " + dataEvento1.getDayOfMonth() + " " + dataEvento1.getMonth() + " "+ dataEvento1.getYear());
-			System.out.println(" Scegli 2 per " + comicon.getTitolo() + " in data " + dataEvento2.getDayOfMonth() + " " + dataEvento2.getMonth() + " "+ dataEvento2.getYear());
-			System.out.println(" Scegli 3 per " + filmfestival.getTitolo() + " in data " + dataEvento3.getDayOfMonth() + " " + dataEvento3.getMonth() + " "+ dataEvento3.getYear());
-			System.out.println(" Scegli 4 per " + mostraArteContemporanea.getTitolo() + " in data " + dataEvento4.getDayOfMonth() + " " + dataEvento4.getMonth() + " "+ dataEvento4.getYear());
+			System.out.println(" Scegli 1 per " + evento1.getTitolo() + " in data " + evento1.dataFormattata());
+			System.out.println(" Scegli 2 per " + comicon.getTitolo() + " in data " + comicon.dataFormattata());
+			System.out.println(" Scegli 3 per " + filmfestival.getTitolo() + " in data " + filmfestival.dataFormattata());
+			System.out.println(" Scegli 4 per " + mostraArteContemporanea.getTitolo() + " in data " + mostraArteContemporanea.dataFormattata());
 
 			String sceltaDisdetta = input.nextLine();			
 
@@ -175,6 +176,7 @@ public class Main {
 			System.out.println("Nessuna disdetta effettuata ");
 
 		//CREARE EVENTO CONCERTO
+		System.out.println("Stiamo creando un evento di tipo concerto...\nAttendi qualche secondo...\n3...\n2...\n1...");
 		LocalDate dataEvento5 = LocalDate.of(2025, 7, 13);
 		LocalTime orario = LocalTime.of(20, 30);
 		Concerto FirenzeRockFestival = new Concerto("FirenzeRockFestival", dataEvento5, 3000, orario, 75.554f);
@@ -185,8 +187,9 @@ public class Main {
 
 		/*
 		 * ARRAYLIST PROGRAMMAEVENTI
-		 */
+		 */         
 
+		System.out.println("\nPROGRAMMA EVENTI\n");
 		//INIZIALIZZARE UN NUOVO PROGRAMMA EVENTI
 		//Creazione di nuovi eventi:
 		Evento nutellaParty = new Evento("NutellaParty", dataEvento4, 60);
@@ -206,17 +209,21 @@ public class Main {
 
 		//    System.out.println(calendario2425.toString());
 
-		
+
 		//TEST METODO NUMEROEVENTI
+		System.out.println("Quanti sono gli eventi in programma?");
 		System.out.println("Il numero di eventi presenti nel programma "+ calendario2425.getTitolo() +" è di " + calendario2425.numeroEventi() + " eventi");
 
-		//TEST METODO EVENTIPERDATA (data scelta 20/02/2025)
+		//TEST METODO EVENTIPERDATA
+		System.out.println("\nQuanti sono gli eventi in programma in data specifica(20/02/2025)?\n...");
 		calendario2425.eventiPerData(dataEvento4);
-		
+
 		//TEST METODO EVENTIORDINATI PER DATA
+		System.out.println("\nAttendi un attimo...\nStiamo compilando la lista degli eventi disponibili per data...\n3...\n2...\n1...");
 		calendario2425.mostraListaPerData();
 
 		//TEST METODO SVUOTALISTA
+		System.out.println("\nAttendi un attimo...\nStiamo eliminando tutti gli eventi presenti nel programma...\n3...\n2...\n1...");
 		calendario2425.svuotaLista();
 		System.out.println("Il numero di eventi presenti nel programma "+ calendario2425.getTitolo() +" è di " + calendario2425.numeroEventi() + " eventi");
 
