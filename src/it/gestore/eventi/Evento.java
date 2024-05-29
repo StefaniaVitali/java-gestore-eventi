@@ -61,40 +61,38 @@ public class Evento  implements Comparable<Evento>{
 		return numPostiPreno;
 	}
 
+	/*
+	 * PUBLIC : PRENOTA, DISDICI + to.STRING (override)
+	 */
 
-	//METODI PUBLIC : PRENOTA, DISDICI + to.STRING (override)
-	//PRENOTA
+	//PRENOTA UN EVENTO
 	public int prenotaEvento(int postiPrenotati , LocalDate data ) {
 
 		LocalDate oggi = LocalDate.now();			
 		postiPrenotati = this.numPostiPreno;
-		int  postiLiberi = this.numPostiTot - postiPrenotati;
 
 		if(data.isBefore(oggi)) {
 			System.out.println("La data che hai scelto non è corretta");
-		} else if (postiLiberi == 0) {
+		} else if (this.postiLiberi() == 0) {
 			System.out.println("non ci sono più posti disponibili");
 		} else			
 			postiPrenotati = postiPrenotati + 1;
-		postiLiberi = this.numPostiTot - postiPrenotati;
 		this.numPostiPreno = postiPrenotati;
 		return postiPrenotati;
 	}
-	//DISDICI
 
+	//DISDICI UN EVENTO
 	public int disdiciEvento(int postiPrenotati , LocalDate data ) {
 
 		LocalDate oggi = LocalDate.now();			
 		postiPrenotati = this.numPostiPreno;
-		int  postiLiberi = this.numPostiTot - postiPrenotati;
 
 		if(data.isBefore(oggi)) {
 			System.out.println("Non è più possibile disdire la prenotazione");
-		} else if (postiLiberi == numPostiTot) {   //controllare bene
-			System.out.println("non è possibile disdire");
+		} else if (this.postiLiberi() == numPostiTot) {   
+			System.out.println("non è possibile disdire, non risultano posti prenotati per questa data");
 		} else			
 			postiPrenotati = postiPrenotati - 1;
-		postiLiberi = this.numPostiTot + postiPrenotati;
 		this.numPostiPreno = postiPrenotati;
 		return postiPrenotati;
 	}
@@ -105,13 +103,6 @@ public class Evento  implements Comparable<Evento>{
 	public String toString() {			
 		return "Hai creato un evento per il giorno " + this.dataFormattata() + " - " + this.getTitolo();
 	}
-
-	//IMPLEMENTARE IL METODO DELL'INTERFACCIA COMPARABLE
-	@Override
-	public int compareTo(Evento o) {
-		return this.data.compareTo(o.data);
-	}
-
 
 	//METODI EVENTUALI	
 
@@ -183,23 +174,29 @@ public class Evento  implements Comparable<Evento>{
 
 	} 
 
+	//numero posti liberi
 	public int postiLiberi() {
 		int postiRimanenti = this.getNumPostiTot() - this.getNumPostiPreno();
 		return postiRimanenti;
 	}
 
 	//generatore casuale di data
-
 	public LocalDate generatoreDataRandom() {
-
 		LocalDate dataRandom =  LocalDate.now().plusDays(numeroRandomico());
 		return dataRandom;
 	}
 
 	//generatore casuale di numeri fino a 2 anni (730 giorni)		
 	public int numeroRandomico () {
-		int numRan = (int) (730 * Math.random() + 1);
+		int giorni = 730;
+		int numRan = (int) (giorni * Math.random() + 1);
 		return numRan;
+	}
+
+	//IMPLEMENTARE IL METODO DELL'INTERFACCIA COMPARABLE
+	@Override
+	public int compareTo(Evento o) {
+		return this.data.compareTo(o.data);
 	}
 
 	/*

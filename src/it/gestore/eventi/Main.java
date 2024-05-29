@@ -39,6 +39,7 @@ public class Main {
 		//ISTANZIARE  IL NUOVO EVENTO
 		System.out.println("Attendi qualche secondo\nStiamo creando il tuo evento...\n3...\n2...\n1...");
 		Evento evento1 = new Evento(nomeEvento1, dataEvento1, numeroPostiTotali);
+		
 
 		//PROVA METODO toString
 		System.out.println(evento1.toString() + " num posti totali "+ evento1.getNumPostiTot());	
