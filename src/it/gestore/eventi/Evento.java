@@ -40,6 +40,15 @@ public class Evento  implements Comparable<Evento>{
 	}
 
 	public void setData(int anno, int mese, int giorno) {
+
+		LocalDate oggi = LocalDate.now();
+		if (!data.isBefore(oggi) && (data!= null)) {
+			this.data = LocalDate.of(anno, mese, giorno);
+		}	else {
+			System.out.println("La data inserita non è corretta!\nVerrà inserita in automatico una data nel primo giorno disponibile a partire da oggi");
+			this.data = generatoreDataRandom();
+		}
+
 		this.data = LocalDate.of(anno, mese, giorno); 
 	}
 
@@ -116,17 +125,17 @@ public class Evento  implements Comparable<Evento>{
 		} System.out.println("Il numero inserito è pari a 0!\nVerrà inserito un numero di defaul di min 2 persone");
 		return 2;
 
-	}	
+	}
 
 
 	public LocalDate dataCorretta (LocalDate data) {
 
 		LocalDate oggi = LocalDate.now();
-		if (!data.isBefore(oggi)) {
+		if (!data.isBefore(oggi) && (data!= null)) {
 			return data;
 		}	else {
-			System.out.println("La data inserita non è corretta!\nVerrà inserita in automatico la data di domani");
-			return data = LocalDate.now().plusDays(1);
+			System.out.println("La data inserita non è corretta!\nVerrà inserita in automatico una data nel primo giorno disponibile a partire da oggi");
+			return data = generatoreDataRandom();
 		}
 
 
@@ -179,6 +188,21 @@ public class Evento  implements Comparable<Evento>{
 		return postiRimanenti;
 	}
 
+	//generatore casuale di data
 
-	//fine classe
+	public LocalDate generatoreDataRandom() {
+
+		LocalDate dataRandom =  LocalDate.now().plusDays(numeroRandomico());
+		return dataRandom;
+	}
+
+	//generatore casuale di numeri fino a 2 anni (730 giorni)		
+	public int numeroRandomico () {
+		int numRan = (int) (730 * Math.random() + 1);
+		return numRan;
+	}
+
+	/*
+	 * FINE CLASSE EVENTO
+	 * */
 }
