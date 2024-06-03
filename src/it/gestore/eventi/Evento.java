@@ -146,7 +146,7 @@ public class Evento  implements Comparable<Evento>{
 
 		System.out.println("\nAttendi un attimo...\nStiamo procedendo con la prenotazione...\n3...\n2...\n1...");
 		int a = this.postiLiberi();
-		if (num <= a) {
+		if ((num <= a) && (num != 0)) {
 			for (int i = 0; i < num; i++) {
 				this.prenotaEvento(this.getNumPostiPreno(), this.getData());
 			} 
