@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 //import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class ProgrammaEventi {
@@ -81,11 +82,15 @@ public class ProgrammaEventi {
 	//METODO CHE RESTITUISCE  UNA STRINGA CHE MOSTRA EVENTI ORDINATI PER DATA - TITOLO
 	public void mostraListaPerData () {
 		Collections.sort(eventi);
-		for(int i = 0; i < eventi.size() ;i++) {
-			System.out.println(eventi.get(i).dataFormattata() +" - "+ eventi.get(i).getTitolo());
+		Iterator<Evento> it = this.eventi.iterator();
+		while(it.hasNext()) {
+			Evento current = it.next();
+			System.out.println(current.dataFormattata() +" - "+ current.getTitolo());
 		}
+		
 
 	}
+	
 
 
 
